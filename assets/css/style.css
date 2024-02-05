@@ -203,6 +203,10 @@ header button:hover {
 
 .about-section {
     background-color: var(--primary-color);
+
+    /* background-color: var(--primary-light-color); */
+    color: var(--primary-white);
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -279,6 +283,7 @@ header button:hover {
     padding: 20px;
     border-radius: 20px;
     margin: 0 10px;
+    width: 200px;
 }
 
 .service-card:hover {
