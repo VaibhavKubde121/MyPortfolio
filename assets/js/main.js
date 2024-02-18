@@ -25,3 +25,7 @@ themeInput.addEventListener('change', function () {
   const color = themeInput.value;
   document.documentElement.style.setProperty('--primary-theme-color', color);
 });
+
+
+
+
