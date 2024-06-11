@@ -334,6 +334,25 @@ header button:hover {
 
 /* contact Section */
 
+.error {
+            color: red;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            display: none;
+            text-align: center;
+        }
+
+.success {
+            color: green;
+            text-align: center;
+        }
+    
+#response {
+            margin-top: 20px;
+            font-size: 16px;
+            text-align: center;
+        }
+
 .contact-section {
     background-color: var(--primary-light-color);
     display: flex;

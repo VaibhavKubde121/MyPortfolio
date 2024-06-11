@@ -55,7 +55,7 @@
         </div>
         <div>
           <a
-            href="https://drive.google.com/file/d/1AXMSCcnUPpbX7vjC3gh4HPc7LPBBum8Z/view?usp=sharing"
+            href="https://drive.google.com/file/d/1sGwMC5mGee-7wgbY4syY4Xgzgf2ehGB3/view?usp=sharing"
             target="_blank"
             ><button>Download Resume</button></a
           >
@@ -240,20 +240,20 @@
 
       <section class="contact-section" id="contact">
         <h1>My <span class="blue-span">Contact</span></h1>
-        <form action="#" id="contactForm" >
-          <input type="text" name="userName" placeholder="Your Name" required/>
-          <input type="email" name="email" placeholder="Email" required/>
-          <textarea
-            name="message"
-            cols="30"
-            rows="10"
-            placeholder="Message"
-            required
-          ></textarea>
-          <button class="submit-btn" type="submit">Submit</button>
+        <form action="#" id="contactForm">
+            <input type="text" name="userName" placeholder="Your Name" required/>
+            <div class="error" id="nameError">Please enter your name.</div>
+
+            <input type="email" name="email" placeholder="Email" required/>
+            <div class="error" id="emailError">Please enter a valid email address.</div>
+
+            <textarea name="message" cols="30" rows="10" placeholder="Message" required></textarea>
+            <div class="error" id="messageError">Please enter your message.</div>
+
+            <button class="submit-btn" type="submit">Submit</button>
         </form>
-        <div id="response" style="color: white;"></div>
-      </section>
+        <div id="response"></div>
+    </section>
 
     </main>
     <footer>
@@ -270,8 +270,55 @@
             emailjs.init("veIG0fXH5OAQ_lNTH"); // Replace with your EmailJS user ID
         })();
 
+          function validateForm() {
+            let isValid = true;
+
+            // Validate Name
+            const name = document.querySelector('input[name="userName"]').value.trim();
+            if (name === "") {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('nameError').style.display = 'none';
+            }
+
+            // Validate Email
+            const email = document.querySelector('input[name="email"]').value.trim();
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (email === "" || !emailPattern.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('emailError').style.display = 'none';
+            }
+
+            // Validate Message
+            const message = document.querySelector('textarea[name="message"]').value.trim();
+            if (message === "") {
+                document.getElementById('messageError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('messageError').style.display = 'none';
+            }
+
+            return isValid;
+        }
+
+        function clearResponseMessage() {
+            setTimeout(function() {
+                document.getElementById('response').innerText = '';
+                document.getElementById('response').className = '';
+            }, 5000); // Remove message after 5 seconds
+        }
+
+
         document.getElementById('contactForm').addEventListener('submit', function(event) {
             event.preventDefault();
+
+            if (!validateForm()) {
+                return; // Form validation failed, do not send the email
+            }
+
 
             const serviceID = 'service_x8ybsj5'; // Replace with your EmailJS service ID
             const templateID = 'template_fz65eyc'; // Replace with your EmailJS template ID
@@ -279,10 +326,14 @@
             emailjs.sendForm(serviceID, templateID, this)
                 .then(function(response) {
                     document.getElementById('response').innerText = 'Email sent successfully!';
+                    document.getElementById('response').className = 'success';
                     // Clear the form fields
                     document.getElementById('contactForm').reset();
+                    clearResponseMessage();
                 }, function(error) {
                     document.getElementById('response').innerText = 'An error occurred. Please try again later.';
+                    document.getElementById('response').className = 'error';
+                    clearResponseMessage();
                 });
         });
     </script>
