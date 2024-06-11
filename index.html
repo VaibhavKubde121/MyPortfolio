@@ -241,13 +241,14 @@
       <section class="contact-section" id="contact">
         <h1>My <span class="blue-span">Contact</span></h1>
         <form action="#" id="contactForm" >
-          <input type="text" name="userName" placeholder="Your Name" />
-          <input type="email" name="email" placeholder="Email" />
+          <input type="text" name="userName" placeholder="Your Name" required/>
+          <input type="email" name="email" placeholder="Email" required/>
           <textarea
             name="message"
             cols="30"
             rows="10"
             placeholder="Message"
+            required
           ></textarea>
           <button class="submit-btn" type="submit">Submit</button>
         </form>
@@ -278,6 +279,8 @@
             emailjs.sendForm(serviceID, templateID, this)
                 .then(function(response) {
                     document.getElementById('response').innerText = 'Email sent successfully!';
+                    // Clear the form fields
+                    document.getElementById('contactForm').reset();
                 }, function(error) {
                     document.getElementById('response').innerText = 'An error occurred. Please try again later.';
                 });
