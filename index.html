@@ -61,8 +61,6 @@
           >
         </div>
       </div>
-
-      
       <div class="menu-icon">
         <i class="fa-solid fa-bars"></i>
       </div>
@@ -175,9 +173,9 @@
         </div>
       </section>
 
-      <section class="service-section" id="skills">
+      <section class="service-section skill-section" id="skills">
         <h1>My <span class="blue-span">Skills</span></h1>
-        <div class="service-cards-container" style="text-align: center;">
+        <div class="service-cards-container skill-cards-container" style="text-align: center;">
           <div class="service-card">
             <!-- <i class="fa-brands fa-html5"></i> -->
             <img src="./assets/img/html.png" alt="" 
@@ -242,7 +240,7 @@
 
       <section class="contact-section" id="contact">
         <h1>My <span class="blue-span">Contact</span></h1>
-        <form action="#">
+        <form action="#" id="contactForm" >
           <input type="text" name="userName" placeholder="Your Name" />
           <input type="email" name="email" placeholder="Email" />
           <textarea
@@ -251,8 +249,9 @@
             rows="10"
             placeholder="Message"
           ></textarea>
-          <button class="submit-btn">Submit</button>
+          <button class="submit-btn" type="submit">Submit</button>
         </form>
+        <div id="response" style="color: white;"></div>
       </section>
 
     </main>
@@ -264,7 +263,26 @@
       </p>
     </footer>
 
-    
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("veIG0fXH5OAQ_lNTH"); // Replace with your EmailJS user ID
+        })();
+
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const serviceID = 'service_x8ybsj5'; // Replace with your EmailJS service ID
+            const templateID = 'template_fz65eyc'; // Replace with your EmailJS template ID
+
+            emailjs.sendForm(serviceID, templateID, this)
+                .then(function(response) {
+                    document.getElementById('response').innerText = 'Email sent successfully!';
+                }, function(error) {
+                    document.getElementById('response').innerText = 'An error occurred. Please try again later.';
+                });
+        });
+    </script>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>

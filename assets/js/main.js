@@ -26,6 +26,42 @@ themeInput.addEventListener('change', function () {
   document.documentElement.style.setProperty('--primary-theme-color', color);
 });
 
+// document.addEventListener('DOMContentLoaded', function () {
+//   let currentIndex = 0;
+//   const totalCards = document.querySelectorAll('.skill-cards-container .service-card').length;
+//   const cardWidth = document.querySelector('.skill-cards-container .service-card').offsetWidth;
+
+//   function nextCard() {
+//     currentIndex = (currentIndex + 1) % totalCards;
+//     updateSlider();
+//   }
+
+//   function updateSlider() {
+//     const translateValue = -currentIndex * cardWidth;
+//     document.querySelector('.skill-cards-container').style.transform = 'translateX(' + translateValue + 'px)';
+//   }
+
+//   setInterval(nextCard, 1000); // Change slide every 3 seconds (adjust as needed)
+// });
+
+// document.addEventListener('DOMContentLoaded', function () {
+//   let currentIndex = 0;
+//   const totalCards = document.querySelectorAll('.skill-cards-container .service-card').length;
+//   const cardWidth = document.querySelector('.skill-cards-container .service-card').offsetWidth;
+
+//   function nextCard() {
+//     currentIndex = (currentIndex + 1) % totalCards;
+//     updateSlider();
+//   }
+
+//   function updateSlider() {
+//     const translateValue = -currentIndex * cardWidth;
+//     document.querySelector('.skill-cards-container').style.transform = 'translateX(' + translateValue + 'px)';
+//   }
+
+//   setInterval(nextCard, 1000); // Change slide every 3 seconds (adjust as needed)
+// });
+
 
 
 
